@@ -7,3 +7,9 @@ pip install scikit-image matplotlib pandas scikit-learn
 pip install pytorch-lightning==1.8.6
 pip install tqdm bcolz-zipline prettytable menpo
 pip install mxnet opencv-python
+pip intall ipython ipykernel
+ipython kernel install --user --name==AdafaceTest
+
+ダウンロードに必要
+pip install gdown
+
