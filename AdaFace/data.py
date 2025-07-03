@@ -127,6 +127,7 @@ def train_dataset(data_root, train_data_path,
                   output_dir):
 
     train_transform = transforms.Compose([
+        transforms.Resize((112, 112)), # 112x112にリサイズ
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
         transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])

@@ -1,6 +1,7 @@
 import os
 import shutil
 import pandas as pd
+from tqdm import tqdm
 
 def convert_to_imagefolder(csv_path, src_image_root, dest_root):
     """
@@ -13,13 +14,17 @@ def convert_to_imagefolder(csv_path, src_image_root, dest_root):
     """
     df = pd.read_csv(csv_path)
     
-    for _, row in df.iterrows():
+    for _, row in tqdm(df.iterrows(), total=len(df)):
         file_path = row['File Path']
         person_id = str(row['Person ID'])
 
         src_path = os.path.join(src_image_root, file_path)
         dest_dir = os.path.join(dest_root, person_id)
         dest_path = os.path.join(dest_dir, os.path.basename(file_path))
+
+        if not os.path.exists(src_path):
+            print(f"Warning:{src_path} does not exist. Skipping.")
+            continue
 
         os.makedirs(dest_dir, exist_ok=True)
         shutil.copy2(src_path, dest_path)
