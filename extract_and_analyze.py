@@ -31,6 +31,7 @@ def main(args):
 
     # データセット読み込み
     transform = transforms.Compose([
+        transforms.Resize((112, 112)), # 112x112にリサイズ
         transforms.ToTensor(),
         transforms.Normalize([0.5]*3, [0.5]*3)
     ])
