@@ -18,6 +18,10 @@ import inspect
 
 def main(args):
 
+    # epoch数をチェック
+    args = config.get_args()
+    print("パースされた epochs:", args.epochs)
+
     hparams = dotdict(vars(args))
 
     trainer_mod = train_val.Trainer(**hparams)
@@ -50,7 +54,7 @@ def main(args):
                              default_root_dir=hparams.output_dir,
                              logger=my_loggers,
                              gpus=hparams.gpus,
-                            #  num_devices=hparams.gpus,
+                            #num_devices=hparams.gpus,
                              max_epochs=hparams.epochs,
                              accelerator='cpu' if hparams.gpus == 0 else 'gpu',
                              strategy=hparams.distributed_backend,

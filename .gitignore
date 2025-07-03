@@ -2,4 +2,6 @@ data/
 *.zip
 __pycache__
 experiments/
-.vscode
+.vscode/
+tmp/
+training_samples
